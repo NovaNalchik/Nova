@@ -1,0 +1,14 @@
+[
+  {
+    "title": "Кухня в стиле лофт",
+    "description": "С доставкой в Москву",
+    "image": "/img/uploads/kitchen1.jpg",
+    "city": "Москва"
+  },
+  {
+    "title": "Кухня с островом",
+    "description": "г. Нальчик",
+    "image": "/img/uploads/kitchen2.jpg",
+    "city": "Нальчик"
+  }
+]
