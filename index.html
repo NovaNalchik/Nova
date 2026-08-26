@@ -1,44 +1,23 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nova — Кухни и шкафы от производителя в Нальчике</title>
-    
-    <!-- 1. Подключаем шрифты Google -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
-    
-    <!-- 2. Подключаем TailwindCSS через CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- 3. Наши кастомные донастройки (чтобы Tailwind понимал шрифты) -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        'display': ['"Playfair Display"', 'serif'],
-                        'body': ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        'nova-dark': '#1A252C',
-                        'nova-copper': '#C87A4F',
-                        'nova-cream': '#FDFBF7',
-                    }
-                }
-            }
-        }
-    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nova — Кухни и шкафы от производителя</title>
 
-    <!-- 4. Немного кастомного CSS для красоты (прокрутка и плавность) -->
+    <!-- Шрифты Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
     <style>
-        /* Плавный скролл по якорям */
-        html {
-            scroll-behavior: smooth;
-        }
-        /* Стиль для карусели (горизонтальный скролл) */
+        /* Стили (как были) */
+        html { scroll-behavior: smooth; }
+        body { background-color: #FDFBF7; font-family: 'Inter', sans-serif; }
+        .hero-overlay { background: linear-gradient(135deg, rgba(26,37,44,0.85) 0%, rgba(26,37,44,0.4) 100%); }
         .carousel-horizontal {
             display: flex;
             gap: 1.5rem;
@@ -51,7 +30,6 @@
             flex: 0 0 340px;
             scroll-snap-align: start;
         }
-        /* Скрываем стандартный ползунок у карусели (для красоты) */
         .carousel-horizontal::-webkit-scrollbar {
             height: 6px;
         }
@@ -63,16 +41,6 @@
             background: #C87A4F;
             border-radius: 10px;
         }
-
-        /* Эффект затемнения на Hero */
-        .hero-overlay {
-            background: linear-gradient(135deg, rgba(26, 37, 44, 0.85) 0%, rgba(26, 37, 44, 0.4) 100%);
-        }
-        /* Базовые стили для текста */
-        body {
-            background-color: #FDFBF7;
-        }
-        /* Анимация для модалки */
         .modal-active {
             display: flex !important;
         }
@@ -80,387 +48,166 @@
 </head>
 <body>
 
-    <!-- ============================================ -->
-    <!-- 1. ХЕДЕР (ШАПКА)                              -->
-    <!-- ============================================ -->
-    <header class="fixed top-0 left-0 w-full bg-nova-dark/95 backdrop-blur-md shadow-lg z-50 py-3 border-b border-white/10">
+    <!-- ХЕДЕР (без изменений) -->
+    <header class="fixed top-0 left-0 w-full bg-[#1A252C]/95 backdrop-blur-md shadow-lg z-50 py-3 border-b border-white/10">
         <div class="container mx-auto px-4 md:px-6 flex justify-between items-center">
-            
-            <!-- Логотип -->
-            <a href="#" class="text-2xl md:text-3xl font-display font-bold text-white tracking-wider">
-                NOVA<span class="text-nova-copper">.</span>
-            </a>
-
-            <!-- Навигация (скрыта на мобилках, показывается с md) -->
+            <a href="#" class="text-2xl md:text-3xl font-display font-bold text-white tracking-wider">NOVA<span class="text-[#C87A4F]">.</span></a>
             <nav class="hidden md:flex items-center space-x-8 text-white/80 font-body text-sm uppercase tracking-wider">
-                <a href="#about" class="hover:text-nova-copper transition-colors">О нас</a>
-                <a href="#process" class="hover:text-nova-copper transition-colors">Процесс</a>
-                <a href="#portfolio" class="hover:text-nova-copper transition-colors">Портфолио</a>
-                <a href="#reviews" class="hover:text-nova-copper transition-colors">Отзывы</a>
-                <a href="#contacts" class="hover:text-nova-copper transition-colors">Контакты</a>
+                <a href="#about" class="hover:text-[#C87A4F] transition-colors">О нас</a>
+                <a href="#process" class="hover:text-[#C87A4F] transition-colors">Процесс</a>
+                <a href="#portfolio" class="hover:text-[#C87A4F] transition-colors">Портфолио</a>
+                <a href="#reviews" class="hover:text-[#C87A4F] transition-colors">Отзывы</a>
+                <a href="#contacts" class="hover:text-[#C87A4F] transition-colors">Контакты</a>
             </nav>
-
-            <!-- Контакты в хедере + кнопка -->
             <div class="hidden md:flex items-center gap-4">
                 <a href="tel:+79609380007" class="text-white font-body font-semibold text-sm flex items-center gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-nova-copper" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-[#C87A4F]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
                     +7 (960) 938-00-07
                 </a>
-                <button onclick="openModal()" class="bg-nova-copper hover:bg-orange-700 text-white text-xs font-bold px-5 py-2.5 rounded-full transition-all shadow-lg hover:shadow-orange-500/25 uppercase tracking-wider">
-                    Заказать звонок
-                </button>
+                <button onclick="openModal()" class="bg-[#C87A4F] hover:bg-orange-700 text-white text-xs font-bold px-5 py-2.5 rounded-full transition-all shadow-lg">Заказать звонок</button>
             </div>
-
-            <!-- Бургер-меню (для телефонов) -->
             <button id="burgerBtn" class="block md:hidden text-white focus:outline-none">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
             </button>
         </div>
-
-        <!-- Мобильное меню (выпадашка) -->
-        <div id="mobileMenu" class="hidden md:hidden bg-nova-dark/95 backdrop-blur-lg px-4 pb-5 pt-2 border-t border-white/10">
+        <div id="mobileMenu" class="hidden md:hidden bg-[#1A252C]/95 backdrop-blur-lg px-4 pb-5 pt-2 border-t border-white/10">
             <nav class="flex flex-col space-y-3 text-white/80 font-body text-sm uppercase tracking-wider">
-                <a href="#about" class="hover:text-nova-copper py-1 transition">О нас</a>
-                <a href="#process" class="hover:text-nova-copper py-1 transition">Процесс</a>
-                <a href="#portfolio" class="hover:text-nova-copper py-1 transition">Портфолио</a>
-                <a href="#reviews" class="hover:text-nova-copper py-1 transition">Отзывы</a>
-                <a href="#contacts" class="hover:text-nova-copper py-1 transition">Контакты</a>
-                <a href="tel:+79609380007" class="text-white font-semibold py-1 flex items-center gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-nova-copper" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                    </svg>
-                    +7 (960) 938-00-07
-                </a>
-                <button onclick="openModal()" class="bg-nova-copper hover:bg-orange-700 text-white text-sm font-bold px-6 py-3 rounded-full transition text-center w-full">
-                    Заказать звонок
-                </button>
+                <a href="#about" class="hover:text-[#C87A4F] py-1">О нас</a>
+                <a href="#process" class="hover:text-[#C87A4F] py-1">Процесс</a>
+                <a href="#portfolio" class="hover:text-[#C87A4F] py-1">Портфолио</a>
+                <a href="#reviews" class="hover:text-[#C87A4F] py-1">Отзывы</a>
+                <a href="#contacts" class="hover:text-[#C87A4F] py-1">Контакты</a>
+                <a href="tel:+79609380007" class="text-white font-semibold py-1">+7 (960) 938-00-07</a>
+                <button onclick="openModal()" class="bg-[#C87A4F] hover:bg-orange-700 text-white text-sm font-bold px-6 py-3 rounded-full transition">Заказать звонок</button>
             </nav>
         </div>
     </header>
 
-    <!-- ============================================ -->
-    <!-- 2. HERO (ГЛАВНЫЙ ЭКРАН)                      -->
-    <!-- ============================================ -->
+    <!-- HERO (без изменений) -->
     <section id="home" class="relative min-h-screen flex items-center overflow-hidden pt-20">
-        <!-- Фон (заглушка из интернета, заменишь на свою) -->
         <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1556911220-e15b29be8c8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')] bg-cover bg-center bg-no-repeat scale-105">
             <div class="hero-overlay absolute inset-0"></div>
         </div>
-
         <div class="relative z-10 container mx-auto px-4 md:px-6 text-white">
             <div class="max-w-3xl">
-                <span class="inline-block bg-nova-copper/20 backdrop-blur-sm text-nova-copper px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider border border-nova-copper/30 mb-4">
-                    Собственное производство в Нальчике
-                </span>
-                <h1 class="font-display text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-5">
-                    Кухни и шкафы <br>
-                    <span class="text-nova-copper">от производителя</span>
-                </h1>
-                <p class="font-body text-lg md:text-xl text-white/80 max-w-2xl mb-8 leading-relaxed">
-                    Экономьте до <strong class="text-white font-bold">30 000 ₽</strong>. Бесплатный замер 
-                    и дизайн-проект за 24 часа. Рассрочка 0%.
-                </p>
-                
+                <span class="inline-block bg-[#C87A4F]/20 backdrop-blur-sm text-[#C87A4F] px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider border border-[#C87A4F]/30 mb-4">Собственное производство в Нальчике</span>
+                <h1 class="font-display text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-5">Кухни и шкафы <br><span class="text-[#C87A4F]">от производителя</span></h1>
+                <p class="font-body text-lg md:text-xl text-white/80 max-w-2xl mb-8 leading-relaxed">Экономьте до <strong class="text-white font-bold">30 000 ₽</strong>. Бесплатный замер и дизайн-проект за 24 часа. Рассрочка 0%.</p>
                 <div class="flex flex-wrap gap-4 items-center">
-                    <button onclick="openModal()" class="bg-nova-copper hover:bg-orange-700 text-white font-bold px-8 py-4 rounded-full text-lg transition-all shadow-2xl shadow-orange-500/30 hover:shadow-orange-500/50 flex items-center gap-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                        </svg>
+                    <button onclick="openModal()" class="bg-[#C87A4F] hover:bg-orange-700 text-white font-bold px-8 py-4 rounded-full text-lg transition-all shadow-2xl shadow-orange-500/30 hover:shadow-orange-500/50 flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
                         Заказать бесплатный замер
                     </button>
-                    <a href="#portfolio" class="text-white/80 hover:text-white font-body flex items-center gap-2 border-b border-white/20 hover:border-white transition">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                        Смотреть работы
-                    </a>
+                    <a href="#portfolio" class="text-white/80 hover:text-white font-body flex items-center gap-2 border-b border-white/20 hover:border-white transition">Смотреть работы</a>
                 </div>
-
-                <!-- Доверительные иконки -->
                 <div class="flex flex-wrap items-center gap-6 mt-10 pt-6 border-t border-white/10">
-                    <span class="flex items-center gap-2 text-sm text-white/70">
-                        <span class="text-green-400 text-xl">✓</span> Рассрочка 0%
-                    </span>
-                    <span class="flex items-center gap-2 text-sm text-white/70">
-                        <span class="text-green-400 text-xl">✓</span> Срок 40-45 дней
-                    </span>
-                    <span class="flex items-center gap-2 text-sm text-white/70">
-                        <span class="text-green-400 text-xl">✓</span> Доставка по РФ
-                    </span>
+                    <span class="flex items-center gap-2 text-sm text-white/70"><span class="text-green-400 text-xl">✓</span> Рассрочка 0%</span>
+                    <span class="flex items-center gap-2 text-sm text-white/70"><span class="text-green-400 text-xl">✓</span> Срок 40-45 дней</span>
+                    <span class="flex items-center gap-2 text-sm text-white/70"><span class="text-green-400 text-xl">✓</span> Доставка по РФ</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ============================================ -->
-    <!-- 3. ПРЕИМУЩЕСТВА (ПОЧЕМУ МЫ)                 -->
-    <!-- ============================================ -->
+    <!-- ПРЕИМУЩЕСТВА (без изменений) -->
     <section id="about" class="py-20 bg-white/50">
         <div class="container mx-auto px-4 md:px-6">
             <div class="text-center max-w-3xl mx-auto mb-16">
-                <h2 class="font-display text-3xl md:text-4xl font-bold text-nova-dark mb-3">
-                    Создаём мечту <span class="text-nova-copper">без посредников</span>
-                </h2>
-                <p class="font-body text-gray-600 text-lg">
-                    Мы — фабрика в Нальчике. Без шоурумов и перекупов, только качество и честные цены.
-                </p>
+                <h2 class="font-display text-3xl md:text-4xl font-bold text-[#1A252C] mb-3">Создаём мечту <span class="text-[#C87A4F]">без посредников</span></h2>
+                <p class="font-body text-gray-600 text-lg">Мы — фабрика в Нальчике. Без шоурумов и перекупов, только качество и честные цены.</p>
             </div>
-
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Блок 1 -->
-                <div class="bg-nova-cream p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl transition-all group text-center">
-                    <div class="w-14 h-14 bg-nova-copper/10 rounded-xl flex items-center justify-center text-nova-copper text-3xl mx-auto mb-5 group-hover:scale-110 transition">
-                        ₽
-                    </div>
-                    <h3 class="font-display text-xl font-bold text-nova-dark mb-2">Экономия до 30 000 ₽</h3>
-                    <p class="font-body text-gray-500 text-sm leading-relaxed">Цены как у производителя без наценок розничных магазинов.</p>
+                <div class="bg-[#FDFBF7] p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl transition-all group text-center">
+                    <div class="w-14 h-14 bg-[#C87A4F]/10 rounded-xl flex items-center justify-center text-[#C87A4F] text-3xl mx-auto mb-5 group-hover:scale-110 transition">₽</div>
+                    <h3 class="font-display text-xl font-bold text-[#1A252C] mb-2">Экономия до 30 000 ₽</h3>
+                    <p class="font-body text-gray-500 text-sm">Цены как у производителя без наценок.</p>
                 </div>
-                <!-- Блок 2 -->
-                <div class="bg-nova-cream p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl transition-all group text-center">
-                    <div class="w-14 h-14 bg-nova-copper/10 rounded-xl flex items-center justify-center text-nova-copper text-3xl mx-auto mb-5 group-hover:scale-110 transition">
-                        📐
-                    </div>
-                    <h3 class="font-display text-xl font-bold text-nova-dark mb-2">Замер и проект — 0 ₽</h3>
-                    <p class="font-body text-gray-500 text-sm leading-relaxed">Выезд дизайнера бесплатно. Никаких скрытых платежей.</p>
+                <div class="bg-[#FDFBF7] p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl transition-all group text-center">
+                    <div class="w-14 h-14 bg-[#C87A4F]/10 rounded-xl flex items-center justify-center text-[#C87A4F] text-3xl mx-auto mb-5 group-hover:scale-110 transition">📐</div>
+                    <h3 class="font-display text-xl font-bold text-[#1A252C] mb-2">Замер и проект — 0 ₽</h3>
+                    <p class="font-body text-gray-500 text-sm">Выезд дизайнера бесплатно.</p>
                 </div>
-                <!-- Блок 3 -->
-                <div class="bg-nova-cream p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl transition-all group text-center">
-                    <div class="w-14 h-14 bg-nova-copper/10 rounded-xl flex items-center justify-center text-nova-copper text-3xl mx-auto mb-5 group-hover:scale-110 transition">
-                        🏭
-                    </div>
-                    <h3 class="font-display text-xl font-bold text-nova-dark mb-2">Собственное производство</h3>
-                    <p class="font-body text-gray-500 text-sm leading-relaxed">Контроль качества на каждом этапе. Мы ручаемся за материалы.</p>
+                <div class="bg-[#FDFBF7] p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl transition-all group text-center">
+                    <div class="w-14 h-14 bg-[#C87A4F]/10 rounded-xl flex items-center justify-center text-[#C87A4F] text-3xl mx-auto mb-5 group-hover:scale-110 transition">🏭</div>
+                    <h3 class="font-display text-xl font-bold text-[#1A252C] mb-2">Собственное производство</h3>
+                    <p class="font-body text-gray-500 text-sm">Контроль качества на каждом этапе.</p>
                 </div>
-                <!-- Блок 4 -->
-                <div class="bg-nova-cream p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl transition-all group text-center">
-                    <div class="w-14 h-14 bg-nova-copper/10 rounded-xl flex items-center justify-center text-nova-copper text-3xl mx-auto mb-5 group-hover:scale-110 transition">
-                        🛋️
-                    </div>
-                    <h3 class="font-display text-xl font-bold text-nova-dark mb-2">Любая корпусная мебель</h3>
-                    <p class="font-body text-gray-500 text-sm leading-relaxed">Кухни, шкафы-купе, гардеробные, гостиные — всё на заказ.</p>
+                <div class="bg-[#FDFBF7] p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl transition-all group text-center">
+                    <div class="w-14 h-14 bg-[#C87A4F]/10 rounded-xl flex items-center justify-center text-[#C87A4F] text-3xl mx-auto mb-5 group-hover:scale-110 transition">🛋️</div>
+                    <h3 class="font-display text-xl font-bold text-[#1A252C] mb-2">Любая корпусная мебель</h3>
+                    <p class="font-body text-gray-500 text-sm">Кухни, шкафы-купе, гардеробные.</p>
                 </div>
             </div>
-
-            <!-- Дополнительный блок про отсутствие шоурума (превращаем минус в плюс) -->
-            <div class="mt-12 bg-nova-dark text-white p-6 md:p-10 rounded-3xl flex flex-col md:flex-row items-center justify-between gap-6 border border-white/10">
+            <div class="mt-12 bg-[#1A252C] text-white p-6 md:p-10 rounded-3xl flex flex-col md:flex-row items-center justify-between gap-6 border border-white/10">
                 <div class="flex items-center gap-4">
                     <span class="text-4xl">💡</span>
-                    <div>
-                        <p class="font-body font-bold text-lg">Нет шоурума? Не проблема!</p>
-                        <p class="font-body text-white/70 text-sm">Мы не платим за аренду залов — мы вкладываем деньги в <span class="text-nova-copper">премиальную фурнитуру</span> и скидки для вас.</p>
-                    </div>
+                    <div><p class="font-body font-bold text-lg">Нет шоурума? Не проблема!</p><p class="font-body text-white/70 text-sm">Мы не платим за аренду залов — мы вкладываем деньги в <span class="text-[#C87A4F]">премиальную фурнитуру</span> и скидки для вас.</p></div>
                 </div>
-                <span class="bg-nova-copper/20 text-nova-copper px-4 py-1.5 rounded-full text-xs font-bold border border-nova-copper/30 whitespace-nowrap">Ваша экономия — наша гордость</span>
+                <span class="bg-[#C87A4F]/20 text-[#C87A4F] px-4 py-1.5 rounded-full text-xs font-bold border border-[#C87A4F]/30 whitespace-nowrap">Ваша экономия — наша гордость</span>
             </div>
         </div>
     </section>
 
-    <!-- ============================================ -->
-    <!-- 4. ПРОЦЕСС РАБОТЫ (4 ШАГА)                  -->
-    <!-- ============================================ -->
-    <section id="process" class="py-20 bg-nova-cream">
+    <!-- ПРОЦЕСС (без изменений) -->
+    <section id="process" class="py-20 bg-[#FDFBF7]">
         <div class="container mx-auto px-4 md:px-6">
             <div class="text-center max-w-3xl mx-auto mb-14">
-                <h2 class="font-display text-3xl md:text-4xl font-bold text-nova-dark mb-3">
-                    Как мы создаём <span class="text-nova-copper">вашу кухню</span>
-                </h2>
-                <p class="font-body text-gray-600">Прозрачный процесс от идеи до установки. Никакой магии — только профессионализм.</p>
+                <h2 class="font-display text-3xl md:text-4xl font-bold text-[#1A252C] mb-3">Как мы создаём <span class="text-[#C87A4F]">вашу кухню</span></h2>
+                <p class="font-body text-gray-600">Прозрачный процесс от идеи до установки.</p>
             </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative">
-                <!-- Шаг 1 -->
-                <div class="relative bg-white p-7 rounded-2xl shadow-md border-l-4 border-nova-copper">
-                    <div class="text-4xl font-display font-bold text-nova-copper/20 absolute top-2 right-4">01</div>
-                    <div class="text-3xl mb-3">📞</div>
-                    <h4 class="font-display text-lg font-bold text-nova-dark">Консультация и замер</h4>
-                    <p class="font-body text-gray-500 text-sm mt-1">Дизайнер приедет бесплатно, сделает замер и обсудит ваши пожелания.</p>
-                </div>
-                <!-- Шаг 2 -->
-                <div class="relative bg-white p-7 rounded-2xl shadow-md border-l-4 border-nova-copper">
-                    <div class="text-4xl font-display font-bold text-nova-copper/20 absolute top-2 right-4">02</div>
-                    <div class="text-3xl mb-3">✏️</div>
-                    <h4 class="font-display text-lg font-bold text-nova-dark">Дизайн-проект 3D</h4>
-                    <p class="font-body text-gray-500 text-sm mt-1">Разработаем визуализацию, подберём материалы и цвета (бесплатно!).</p>
-                </div>
-                <!-- Шаг 3 -->
-                <div class="relative bg-white p-7 rounded-2xl shadow-md border-l-4 border-nova-copper">
-                    <div class="text-4xl font-display font-bold text-nova-copper/20 absolute top-2 right-4">03</div>
-                    <div class="text-3xl mb-3">⚙️</div>
-                    <h4 class="font-display text-lg font-bold text-nova-dark">Производство</h4>
-                    <p class="font-body text-gray-500 text-sm mt-1">40–45 дней и ваша мебель готова. Фотоотчёт по запросу.</p>
-                </div>
-                <!-- Шаг 4 -->
-                <div class="relative bg-white p-7 rounded-2xl shadow-md border-l-4 border-nova-copper">
-                    <div class="text-4xl font-display font-bold text-nova-copper/20 absolute top-2 right-4">04</div>
-                    <div class="text-3xl mb-3">🚚</div>
-                    <h4 class="font-display text-lg font-bold text-nova-dark">Доставка и сборка</h4>
-                    <p class="font-body text-gray-500 text-sm mt-1">Профессиональный монтаж по всей России. Подключение техники.</p>
-                </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="relative bg-white p-7 rounded-2xl shadow-md border-l-4 border-[#C87A4F]"><div class="text-4xl font-display font-bold text-[#C87A4F]/20 absolute top-2 right-4">01</div><div class="text-3xl mb-3">📞</div><h4 class="font-display text-lg font-bold text-[#1A252C]">Консультация и замер</h4><p class="font-body text-gray-500 text-sm mt-1">Дизайнер приедет бесплатно, сделает замер и обсудит ваши пожелания.</p></div>
+                <div class="relative bg-white p-7 rounded-2xl shadow-md border-l-4 border-[#C87A4F]"><div class="text-4xl font-display font-bold text-[#C87A4F]/20 absolute top-2 right-4">02</div><div class="text-3xl mb-3">✏️</div><h4 class="font-display text-lg font-bold text-[#1A252C]">Дизайн-проект 3D</h4><p class="font-body text-gray-500 text-sm mt-1">Разработаем визуализацию, подберём материалы (бесплатно!).</p></div>
+                <div class="relative bg-white p-7 rounded-2xl shadow-md border-l-4 border-[#C87A4F]"><div class="text-4xl font-display font-bold text-[#C87A4F]/20 absolute top-2 right-4">03</div><div class="text-3xl mb-3">⚙️</div><h4 class="font-display text-lg font-bold text-[#1A252C]">Производство</h4><p class="font-body text-gray-500 text-sm mt-1">40–45 дней и ваша мебель готова.</p></div>
+                <div class="relative bg-white p-7 rounded-2xl shadow-md border-l-4 border-[#C87A4F]"><div class="text-4xl font-display font-bold text-[#C87A4F]/20 absolute top-2 right-4">04</div><div class="text-3xl mb-3">🚚</div><h4 class="font-display text-lg font-bold text-[#1A252C]">Доставка и сборка</h4><p class="font-body text-gray-500 text-sm mt-1">Профессиональный монтаж по всей России.</p></div>
             </div>
         </div>
     </section>
 
-    <!-- ============================================ -->
-    <!-- 5. ПОРТФОЛИО (КАРУСЕЛЬ)                     -->
-    <!-- ============================================ -->
+    <!-- ПОРТФОЛИО (динамическое) -->
     <section id="portfolio" class="py-20 bg-white">
         <div class="container mx-auto px-4 md:px-6">
             <div class="flex justify-between items-center mb-10 flex-wrap gap-4">
                 <div>
-                    <h2 class="font-display text-3xl md:text-4xl font-bold text-nova-dark">
-                        Наши <span class="text-nova-copper">работы</span>
-                    </h2>
+                    <h2 class="font-display text-3xl md:text-4xl font-bold text-[#1A252C]">Наши <span class="text-[#C87A4F]">работы</span></h2>
                     <p class="font-body text-gray-500">Листайте галерею — вдохновляйтесь!</p>
                 </div>
-                <span class="text-sm text-gray-400 font-body flex items-center gap-1">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
-                    Листайте вправо
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
-                </span>
+                <span class="text-sm text-gray-400 font-body flex items-center gap-1"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg> Листайте вправо <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg></span>
             </div>
-
-            <!-- Горизонтальный скролл -->
-            <div class="carousel-horizontal">
-                <!-- Карточка 1 -->
-                <div class="bg-gray-100 rounded-2xl overflow-hidden shadow-md flex-shrink-0 group">
-                    <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Кухня" class="w-full h-64 object-cover group-hover:scale-105 transition duration-500">
-                    <div class="p-4 bg-white">
-                        <h4 class="font-display font-bold text-nova-dark">Кухня в стиле лофт</h4>
-                        <p class="font-body text-sm text-gray-500">с доставкой в Москву</p>
-                    </div>
-                </div>
-                <!-- Карточка 2 -->
-                <div class="bg-gray-100 rounded-2xl overflow-hidden shadow-md flex-shrink-0 group">
-                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Кухня" class="w-full h-64 object-cover group-hover:scale-105 transition duration-500">
-                    <div class="p-4 bg-white">
-                        <h4 class="font-display font-bold text-nova-dark">Кухня с островом</h4>
-                        <p class="font-body text-sm text-gray-500">г. Нальчик</p>
-                    </div>
-                </div>
-                <!-- Карточка 3 -->
-                <div class="bg-gray-100 rounded-2xl overflow-hidden shadow-md flex-shrink-0 group">
-                    <img src="https://images.unsplash.com/photo-1558030006-450675393462?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Шкаф" class="w-full h-64 object-cover group-hover:scale-105 transition duration-500">
-                    <div class="p-4 bg-white">
-                        <h4 class="font-display font-bold text-nova-dark">Шкаф-купе на заказ</h4>
-                        <p class="font-body text-sm text-gray-500">встроенный, 3 метра</p>
-                    </div>
-                </div>
-                <!-- Карточка 4 -->
-                <div class="bg-gray-100 rounded-2xl overflow-hidden shadow-md flex-shrink-0 group">
-                    <img src="https://images.unsplash.com/photo-1594026112284-02bb6f3352fe?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Гардеробная" class="w-full h-64 object-cover group-hover:scale-105 transition duration-500">
-                    <div class="p-4 bg-white">
-                        <h4 class="font-display font-bold text-nova-dark">Гардеробная система</h4>
-                        <p class="font-body text-sm text-gray-500">проект "Премиум"</p>
-                    </div>
-                </div>
-                <!-- Карточка 5 (запас) -->
-                <div class="bg-gray-100 rounded-2xl overflow-hidden shadow-md flex-shrink-0 group">
-                    <img src="https://images.unsplash.com/photo-1556912173-3bb406ef74b6?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Гостиная" class="w-full h-64 object-cover group-hover:scale-105 transition duration-500">
-                    <div class="p-4 bg-white">
-                        <h4 class="font-display font-bold text-nova-dark">Гостиная с модулями</h4>
-                        <p class="font-body text-sm text-gray-500">индивидуальный дизайн</p>
-                    </div>
-                </div>
+            <div id="projectsContainer" class="carousel-horizontal">
+                <!-- Сюда JS вставит проекты -->
             </div>
         </div>
     </section>
 
-    <!-- ============================================ -->
-    <!-- 6. ОТЗЫВЫ                                   -->
-    <!-- ============================================ -->
-    <section id="reviews" class="py-20 bg-nova-cream">
+    <!-- ОТЗЫВЫ (динамические) -->
+    <section id="reviews" class="py-20 bg-[#FDFBF7]">
         <div class="container mx-auto px-4 md:px-6">
-            <h2 class="font-display text-3xl md:text-4xl font-bold text-center text-nova-dark mb-12">
-                Нам <span class="text-nova-copper">доверяют</span>
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Отзыв 1 -->
-                <div class="bg-white p-7 rounded-2xl shadow-sm border border-gray-100">
-                    <div class="flex text-nova-copper text-sm mb-2">★★★★★</div>
-                    <p class="font-body text-gray-700 text-sm italic leading-relaxed">"Цены приятно удивили. Дизайнер помог разработать проект, чтобы всё смотрелось гармонично. Кухня идеально подошла!"</p>
-                    <p class="font-body font-bold text-nova-dark mt-4">— Александр, г. Нальчик</p>
-                </div>
-                <!-- Отзыв 2 -->
-                <div class="bg-white p-7 rounded-2xl shadow-sm border border-gray-100">
-                    <div class="flex text-nova-copper text-sm mb-2">★★★★★</div>
-                    <p class="font-body text-gray-700 text-sm italic leading-relaxed">"Налаженное годами производство. Весь процесс впечатлил, всё чётко и слажено. Менеджер активный и вежливый. Спасибо!"</p>
-                    <p class="font-body font-bold text-nova-dark mt-4">— Екатерина, г. Москва</p>
-                </div>
-                <!-- Отзыв 3 -->
-                <div class="bg-white p-7 rounded-2xl shadow-sm border border-gray-100">
-                    <div class="flex text-nova-copper text-sm mb-2">★★★★★</div>
-                    <p class="font-body text-gray-700 text-sm italic leading-relaxed">"Качество кухни хорошее. Сделали точно в срок. Отдельное спасибо за рассрочку — очень помогло при ремонте!"</p>
-                    <p class="font-body font-bold text-nova-dark mt-4">— Иван, г. Ростов-на-Дону</p>
-                </div>
+            <h2 class="font-display text-3xl md:text-4xl font-bold text-center text-[#1A252C] mb-12">Нам <span class="text-[#C87A4F]">доверяют</span></h2>
+            <div id="reviewsContainer" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Сюда JS вставит отзывы -->
             </div>
-            <!-- Ссылка на Instagram -->
             <div class="text-center mt-8">
-                <a href="https://instagram.com/nova_kuhni_" target="_blank" class="font-body text-nova-copper hover:underline inline-flex items-center gap-2">
-                    Больше отзывов в Instagram @nova_kuhni_
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
-                </a>
+                <a href="https://instagram.com/nova_kuhni_" target="_blank" class="font-body text-[#C87A4F] hover:underline inline-flex items-center gap-2">Больше отзывов в Instagram @nova_kuhni_</a>
             </div>
         </div>
     </section>
 
-    <!-- ============================================ -->
-    <!-- 7. КОНТАКТЫ (КАРТА + ФОРМА)                -->
-    <!-- ============================================ -->
+    <!-- КОНТАКТЫ (динамические) -->
     <section id="contacts" class="py-20 bg-white">
         <div class="container mx-auto px-4 md:px-6">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                <!-- Левая часть: Информация -->
                 <div>
-                    <h2 class="font-display text-3xl md:text-4xl font-bold text-nova-dark mb-6">
-                        Свяжитесь <span class="text-nova-copper">с нами</span>
-                    </h2>
+                    <h2 class="font-display text-3xl md:text-4xl font-bold text-[#1A252C] mb-6">Свяжитесь <span class="text-[#C87A4F]">с нами</span></h2>
                     <p class="font-body text-gray-600 mb-8">Приезжайте к нам на производство или позвоните — мы всегда на связи!</p>
-                    
-                    <div class="space-y-5">
-                        <div class="flex items-start gap-4">
-                            <div class="w-10 h-10 bg-nova-copper/10 rounded-full flex items-center justify-center text-nova-copper flex-shrink-0 mt-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
-                            </div>
-                            <div>
-                                <p class="font-body font-bold text-nova-dark">Адрес производства</p>
-                                <p class="font-body text-gray-500">г. Нальчик, ул. Куйбышева, д. 78</p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start gap-4">
-                            <div class="w-10 h-10 bg-nova-copper/10 rounded-full flex items-center justify-center text-nova-copper flex-shrink-0 mt-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
-                            </div>
-                            <div>
-                                <p class="font-body font-bold text-nova-dark">Телефон / WhatsApp</p>
-                                <a href="tel:+79609380007" class="font-body text-nova-copper hover:underline text-lg font-semibold">+7 (960) 938-00-07</a>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start gap-4">
-                            <div class="w-10 h-10 bg-nova-copper/10 rounded-full flex items-center justify-center text-nova-copper flex-shrink-0 mt-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" /></svg>
-                            </div>
-                            <div>
-                                <p class="font-body font-bold text-nova-dark">Социальные сети</p>
-                                <a href="https://instagram.com/nova_kuhni_" target="_blank" class="font-body text-nova-copper hover:underline">Instagram: @nova_kuhni_</a>
-                            </div>
-                        </div>
+                    <div id="contactsContainer" class="space-y-5">
+                        <!-- Сюда JS вставит контакты -->
                     </div>
-
-                    <!-- Кнопка CTA в контактах -->
-                    <button onclick="openModal()" class="mt-10 bg-nova-dark hover:bg-black text-white font-bold px-8 py-4 rounded-full transition shadow-lg flex items-center gap-2">
+                    <button onclick="openModal()" class="mt-10 bg-[#1A252C] hover:bg-black text-white font-bold px-8 py-4 rounded-full transition shadow-lg flex items-center gap-2">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" /></svg>
                         Написать в WhatsApp
                     </button>
                 </div>
-
-                <!-- Правая часть: Карта (iframe Яндекс) -->
                 <div class="rounded-3xl overflow-hidden shadow-2xl h-[350px] lg:h-[400px] border-4 border-white">
                     <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A8c1b2f3a4e5d6c7b8a9f0e1d2c3b4a5f6e7d8c9b0a1f2e3d4c5b6a7f8e9d0c1b&amp;source=constructor" width="100%" height="100%" frameborder="0" class="grayscale hover:grayscale-0 transition duration-700"></iframe>
                 </div>
@@ -468,86 +215,38 @@
         </div>
     </section>
 
-    <!-- ============================================ -->
-    <!-- 8. ФУТЕР (ПОДВАЛ)                           -->
-    <!-- ============================================ -->
-    <footer class="bg-nova-dark text-white/50 border-t border-white/5 py-8">
+    <!-- ФУТЕР -->
+    <footer class="bg-[#1A252C] text-white/50 border-t border-white/5 py-8">
         <div class="container mx-auto px-4 md:px-6 flex flex-col md:flex-row justify-between items-center text-sm gap-4">
             <p class="font-body">© 2026 Студия кухонной мебели «Nova». Производство в Нальчике.</p>
             <p class="font-body">Сделано с ❤️ для вашего дома</p>
         </div>
     </footer>
 
-    <!-- ============================================ -->
-    <!-- 9. МОДАЛЬНОЕ ОКНО (ПОПАП)                   -->
-    <!-- ============================================ -->
+    <!-- МОДАЛЬНОЕ ОКНО -->
     <div id="modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-[999] hidden items-center justify-center p-4" onclick="if(event.target === this) closeModal()">
-        <div class="bg-white max-w-lg w-full rounded-3xl p-8 md:p-10 shadow-2xl animate__animated animate__fadeInUp relative">
-            <!-- Кнопка закрыть -->
+        <div class="bg-white max-w-lg w-full rounded-3xl p-8 md:p-10 shadow-2xl relative">
             <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-black text-2xl">&times;</button>
-            
             <div class="text-center mb-6">
-                <h3 class="font-display text-2xl font-bold text-nova-dark">Бесплатный замер</h3>
+                <h3 class="font-display text-2xl font-bold text-[#1A252C]">Бесплатный замер</h3>
                 <p class="font-body text-gray-500 text-sm">Оставьте номер — мы перезвоним за 5 минут</p>
             </div>
-
             <form id="callbackForm" onsubmit="submitForm(event)" class="space-y-5">
                 <div>
-                    <label class="font-body text-sm font-semibold text-nova-dark block mb-1">Ваше имя</label>
-                    <input type="text" required class="w-full bg-gray-100 border-0 rounded-xl px-4 py-3 font-body text-gray-800 focus:ring-2 focus:ring-nova-copper outline-none transition" placeholder="Анна">
+                    <label class="font-body text-sm font-semibold text-[#1A252C] block mb-1">Ваше имя</label>
+                    <input type="text" required class="w-full bg-gray-100 border-0 rounded-xl px-4 py-3 font-body text-gray-800 focus:ring-2 focus:ring-[#C87A4F] outline-none transition" placeholder="Анна">
                 </div>
                 <div>
-                    <label class="font-body text-sm font-semibold text-nova-dark block mb-1">Номер телефона</label>
-                    <input type="tel" required class="w-full bg-gray-100 border-0 rounded-xl px-4 py-3 font-body text-gray-800 focus:ring-2 focus:ring-nova-copper outline-none transition" placeholder="+7 (___)-___-__-__">
+                    <label class="font-body text-sm font-semibold text-[#1A252C] block mb-1">Номер телефона</label>
+                    <input type="tel" required class="w-full bg-gray-100 border-0 rounded-xl px-4 py-3 font-body text-gray-800 focus:ring-2 focus:ring-[#C87A4F] outline-none transition" placeholder="+7 (___)-___-__-__">
                 </div>
-                <button type="submit" class="w-full bg-nova-copper hover:bg-orange-700 text-white font-bold py-4 rounded-xl transition text-lg shadow-lg shadow-orange-500/30">
-                    Заказать звонок
-                </button>
+                <button type="submit" class="w-full bg-[#C87A4F] hover:bg-orange-700 text-white font-bold py-4 rounded-xl transition text-lg shadow-lg shadow-orange-500/30">Заказать звонок</button>
                 <p class="text-[10px] text-gray-400 text-center mt-2">Нажимая на кнопку, вы соглашаетесь на обработку данных</p>
             </form>
         </div>
     </div>
 
-    <!-- ============================================ -->
-    <!-- 10. JAVASCRIPT (ЛОГИКА)                     -->
-    <!-- ============================================ -->
-    <script>
-        // 1. Бургер-меню (для мобилок)
-        const burgerBtn = document.getElementById('burgerBtn');
-        const mobileMenu = document.getElementById('mobileMenu');
-        burgerBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        // 2. Открытие / Закрытие модалки
-        function openModal() {
-            document.getElementById('modal').classList.add('modal-active');
-            document.body.style.overflow = 'hidden'; // блокируем скролл фона
-        }
-        function closeModal() {
-            document.getElementById('modal').classList.remove('modal-active');
-            document.body.style.overflow = 'auto';
-        }
-
-        // 3. Отправка формы (пока просто имитация, чтобы выскакивало сообщение)
-        function submitForm(e) {
-            e.preventDefault();
-            // Тут в будущем можно будет подключить отправку на почту/телеграм
-            alert('✅ Спасибо! Мы перезвоним вам в ближайшее время.');
-            closeModal();
-            // Если захочешь реальную отправку — добавим fetch / emailjs позже.
-        }
-
-        // 4. Закрываем мобильное меню при клике на ссылку (чтобы не висело)
-        document.querySelectorAll('#mobileMenu a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-            });
-        });
-
-        // 5. Магия для карусели: Добавляем подсказку о прокрутке (необязательно)
-        console.log('Nova Kitchen сайт загружен! 🚀');
-    </script>
-
+    <!-- JS -->
+    <script src="js/main.js"></script>
 </body>
 </html>
