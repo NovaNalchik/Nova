@@ -3,6 +3,8 @@ backend:
   repo: NovaNalchik/Nova
   branch: main
   client_id: 0v23lialb7t5E1k5g7QK
+  base_url: https://api.github.com
+  auth_endpoint: https://github.com/login/oauth/authorize
 
 media_folder: "img/uploads"
 public_folder: "/img/uploads"
