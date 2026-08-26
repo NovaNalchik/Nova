@@ -1,0 +1,43 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "img/uploads"
+public_folder: "/img/uploads"
+
+collections:
+  - name: "projects"
+    label: "Проекты (портфолио)"
+    folder: "data/projects"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Заголовок", name: "title", widget: "string" }
+      - { label: "Описание", name: "description", widget: "text" }
+      - { label: "Фото", name: "image", widget: "image" }
+      - { label: "Город", name: "city", widget: "string", required: false }
+      - { label: "Ссылка на проект", name: "link", widget: "string", required: false }
+
+  - name: "reviews"
+    label: "Отзывы"
+    folder: "data/reviews"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Имя", name: "name", widget: "string" }
+      - { label: "Текст отзыва", name: "text", widget: "text" }
+      - { label: "Город", name: "city", widget: "string", required: false }
+      - { label: "Рейтинг (1-5)", name: "rating", widget: "number", valueType: "int", min: 1, max: 5, default: 5 }
+
+  - name: "settings"
+    label: "Настройки сайта"
+    folder: "data/settings"
+    create: false
+    files:
+      - name: "general"
+        label: "Основные настройки"
+        file: "data/settings/general.json"
+        fields:
+          - { label: "Телефон", name: "phone", widget: "string" }
+          - { label: "Адрес", name: "address", widget: "string" }
+          - { label: "Ссылка Instagram", name: "instagram", widget: "string" }
