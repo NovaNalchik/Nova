@@ -9,7 +9,7 @@ public_folder: "/img/uploads"
 
 collections:
   - name: "projects"
-    label: "Проекты"
+    label: "Проекты (портфолио)"
     folder: "data/projects"
     create: true
     slug: "{{slug}}"
@@ -18,6 +18,7 @@ collections:
       - { label: "Описание", name: "description", widget: "text" }
       - { label: "Фото", name: "image", widget: "image" }
       - { label: "Город", name: "city", widget: "string", required: false }
+      - { label: "Ссылка", name: "link", widget: "string", required: false }
 
   - name: "reviews"
     label: "Отзывы"
@@ -28,9 +29,17 @@ collections:
       - { label: "Имя", name: "name", widget: "string" }
       - { label: "Текст", name: "text", widget: "text" }
       - { label: "Город", name: "city", widget: "string", required: false }
-      - { label: "Рейтинг", name: "rating", widget: "number", valueType: "int", min: 1, max: 5, default: 5 }
+      - { label: "Рейтинг (1-5)", name: "rating", widget: "number", valueType: "int", min: 1, max: 5, default: 5 }
 
-  # пока убираем settings, чтобы избежать ошибок с отсутствующим файлом
-  # - name: "settings"
-  #   label: "Настройки"
-  #   ...
+  - name: "settings"
+    label: "Настройки сайта"
+    folder: "data/settings"
+    create: false
+    files:
+      - name: "general"
+        label: "Основные настройки"
+        file: "data/settings/general.json"
+        fields:
+          - { label: "Телефон", name: "phone", widget: "string" }
+          - { label: "Адрес", name: "address", widget: "string" }
+          - { label: "Instagram", name: "instagram", widget: "string" }
