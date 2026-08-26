@@ -7,4 +7,30 @@ backend:
 media_folder: "img/uploads"
 public_folder: "/img/uploads"
 
-collections: []
+collections:
+  - name: "projects"
+    label: "Проекты"
+    folder: "data/projects"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Заголовок", name: "title", widget: "string" }
+      - { label: "Описание", name: "description", widget: "text" }
+      - { label: "Фото", name: "image", widget: "image" }
+      - { label: "Город", name: "city", widget: "string", required: false }
+
+  - name: "reviews"
+    label: "Отзывы"
+    folder: "data/reviews"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Имя", name: "name", widget: "string" }
+      - { label: "Текст", name: "text", widget: "text" }
+      - { label: "Город", name: "city", widget: "string", required: false }
+      - { label: "Рейтинг", name: "rating", widget: "number", valueType: "int", min: 1, max: 5, default: 5 }
+
+  # пока убираем settings, чтобы избежать ошибок с отсутствующим файлом
+  # - name: "settings"
+  #   label: "Настройки"
+  #   ...
